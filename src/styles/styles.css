@@ -1,0 +1,180 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h2 {
+    color: #2c3e50;
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Logo Preview Section */
+  #logoPreview {
+    display: inline-block;
+    padding: 30px;
+    background-color: var(--bg-color, #ffffff);
+    border-radius: 10px;
+    border: 2px solid #dfe6e9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 200px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  #logoPreview:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Text Styling */
+  #logoPreview div {
+    font-family: 'Arial', sans-serif;
+    transition: color 0.3s ease, font-size 0.3s ease;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #34495e;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    outline: none;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus {
+    border-color: #3498db;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Color Picker Buttons */
+  button.color-picker {
+    background-color: transparent;
+    border: 2px solid #ddd;
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button.color-picker:hover {
+    border-color: #3498db;
+    transform: scale(1.1);
+  }
+  
+  button.color-picker:focus {
+    outline: none;
+  }
+  
+  /* Font Size Controls */
+  input[type="number"] {
+    width: 100px;
+  }
+  
+  input[type="text"] {
+    width: 200px;
+  }
+  
+  /* Container for the form controls */
+  form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  form > div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  form select {
+    width: 100%;
+  }
+  
+  /* Download Button */
+  button#downloadBtn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #2ecc71;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button#downloadBtn:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .container {
+      padding: 15px;
+    }
+  
+    form {
+      width: 100%;
+    }
+  
+    #logoPreview {
+      width: 250px;
+      height: 150px;
+    }
+  }
+  
+  
