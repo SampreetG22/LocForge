@@ -1,0 +1,31 @@
+.outputMainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logoContainer {
+  width: max-content;
+  padding: 1.8vw;
+  margin-block: 5%;
+  margin-top: 10%;
+}
+.faviconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 2.2vw;
+  padding-inline: 3vw;
+  margin-top: 5%;
+}
+.buttonsWrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 7vw;
+}
+.downloadButtons {
+  width: max-content !important;
+  background-color: #464fec !important;
+  padding: 2.5% 5% !important;
+}

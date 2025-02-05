@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import html2canvas from "html2canvas";
-import '../styles/styles.css';
+import "../styles/styles.css";
 
-
-const commonColors = ["#000000", "#FF5733", "#3498db", "#27ae60", "#f1c40f", "#8e44ad", "#e74c3c", "#ffffff"];
+const commonColors = [
+  "#000000",
+  "#FF5733",
+  "#3498db",
+  "#27ae60",
+  "#f1c40f",
+  "#8e44ad",
+  "#e74c3c",
+  "#ffffff",
+];
 
 const LogoGenerator = () => {
   const [text1, setText1] = useState("Line 1");
@@ -17,13 +25,12 @@ const LogoGenerator = () => {
   const [isBold1, setIsBold1] = useState(false);
   const [isBold2, setIsBold2] = useState(false);
 
-
   const handleDownload = () => {
     const logoDiv = document.getElementById("logoPreview");
     html2canvas(logoDiv).then((canvas) => {
       const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/jpeg");
-      link.download = "logo.jpeg";
+      link.href = canvas.toDataURL("image/png");
+      link.download = "logo.png";
       link.click();
     });
   };
@@ -50,7 +57,7 @@ const LogoGenerator = () => {
             color: textColor1,
             fontSize: `${fontSize1}px`,
             fontFamily: fontFamily,
-            fontWeight: isBold1 ? "bold" : "normal"
+            fontWeight: isBold1 ? "bold" : "normal",
           }}
         >
           {text1}
@@ -60,7 +67,7 @@ const LogoGenerator = () => {
             color: textColor2,
             fontSize: `${fontSize2}px`,
             fontFamily: fontFamily,
-            fontWeight: isBold2 ? "bold" : "normal"
+            fontWeight: isBold2 ? "bold" : "normal",
           }}
         >
           {text2}
@@ -71,7 +78,11 @@ const LogoGenerator = () => {
       <div style={{ marginTop: "20px" }}>
         {/* Text Input */}
         <label>Text 1:</label>
-        <input type="text" value={text1} onChange={(e) => setText1(e.target.value)} />
+        <input
+          type="text"
+          value={text1}
+          onChange={(e) => setText1(e.target.value)}
+        />
 
         {/* Color Input & Common Colors for Text 1 */}
         <label>Color 1:</label>
@@ -100,7 +111,13 @@ const LogoGenerator = () => {
 
         {/* Font Size 1 */}
         <label>Size 1:</label>
-        <input type="number" value={fontSize1} min="10" max="100" onChange={(e) => setFontSize1(e.target.value)} />
+        <input
+          type="number"
+          value={fontSize1}
+          min="10"
+          max="100"
+          onChange={(e) => setFontSize1(e.target.value)}
+        />
 
         {/* Bold Toggle Button for Text 1 */}
         <button onClick={() => setIsBold1(!isBold1)}>
@@ -113,7 +130,11 @@ const LogoGenerator = () => {
 
         {/* Text 2 */}
         <label>Text 2:</label>
-        <input type="text" value={text2} onChange={(e) => setText2(e.target.value)} />
+        <input
+          type="text"
+          value={text2}
+          onChange={(e) => setText2(e.target.value)}
+        />
 
         {/* Color Input & Common Colors for Text 2 */}
         <label>Color 2:</label>
@@ -142,7 +163,13 @@ const LogoGenerator = () => {
 
         {/* Font Size 2 */}
         <label>Size 2:</label>
-        <input type="number" value={fontSize2} min="10" max="100" onChange={(e) => setFontSize2(e.target.value)} />
+        <input
+          type="number"
+          value={fontSize2}
+          min="10"
+          max="100"
+          onChange={(e) => setFontSize2(e.target.value)}
+        />
 
         {/* Bold Toggle Button for Text 2 */}
         <button onClick={() => setIsBold2(!isBold2)}>
@@ -153,7 +180,10 @@ const LogoGenerator = () => {
 
         {/* Font Selection */}
         <label>Font Family:</label>
-        <select value={fontFamily} onChange={(e) => setFontFamily(e.target.value)}>
+        <select
+          value={fontFamily}
+          onChange={(e) => setFontFamily(e.target.value)}
+        >
           <option value="Arial">Arial</option>
           <option value="Verdana">Verdana</option>
           <option value="Courier New">Courier New</option>
@@ -186,7 +216,10 @@ const LogoGenerator = () => {
         </div>
 
         <br />
-        <button onClick={handleDownload} style={{ marginTop: "10px", padding: "10px", cursor: "pointer" }}>
+        <button
+          onClick={handleDownload}
+          style={{ marginTop: "10px", padding: "10px", cursor: "pointer" }}
+        >
           Download Logo
         </button>
       </div>
