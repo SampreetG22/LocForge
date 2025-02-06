@@ -39,6 +39,11 @@ export const Output = (props) => {
     });
   };
 
+  const firstLetter = (word) => {
+    const letter = word.charAt(0).toUpperCase();
+    return letter;
+  };
+
   return (
     <div className="outputMainContainer">
       <div
@@ -52,7 +57,9 @@ export const Output = (props) => {
         className="faviconContainer"
         style={{ backgroundColor: styles.backgroundColor }}
       >
-        <p style={{ fontFamily, ...getStyle("favicon") }}>R</p>
+        <p style={{ fontFamily, ...getStyle("favicon") }}>
+          {firstLetter(line1)}
+        </p>
       </div>
       <div className="buttonsWrapper">
         <Button

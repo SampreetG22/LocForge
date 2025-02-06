@@ -61,7 +61,16 @@ export const Inputs = () => {
     }));
   };
 
-  const copyColor = () => {};
+  const copyColor = (color) => {
+    navigator.clipboard
+      .writeText(color)
+      .then(() => {
+        console.log("Color copied to clipboard:", color);
+      })
+      .catch((err) => {
+        console.error("Failed to copy color:", err);
+      });
+  };
 
   return (
     <div className="mainContainer">
@@ -239,7 +248,7 @@ export const Inputs = () => {
               onChange={(e) => handleBackgroundColorChange(e.target.value)}
               InputProps={{
                 endAdornment: (
-                  <IconButton onClick={copyColor}>
+                  <IconButton onClick={() => copyColor(styles.backgroundColor)}>
                     <ContentCopyIcon />
                   </IconButton>
                 ),
@@ -261,7 +270,7 @@ export const Inputs = () => {
               onChange={(e) => handleColorChange(e.target.value)}
               InputProps={{
                 endAdornment: (
-                  <IconButton onClick={copyColor}>
+                  <IconButton onClick={() => copyColor(styles.color)}>
                     <ContentCopyIcon />
                   </IconButton>
                 ),
@@ -283,7 +292,7 @@ export const Inputs = () => {
         ) : (
           <div className="noResultWrapper">
             <img src="noResult.png" alt="No Result" className="noResultImage" />
-            <p className="noText">Oops! Add something to generate...</p>
+            <p className="noText">Oops! Add text to generate...</p>
           </div>
         )}
       </div>

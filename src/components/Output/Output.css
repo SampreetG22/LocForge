@@ -28,4 +28,6 @@
   width: max-content !important;
   background-color: #464fec !important;
   padding: 2.5% 5% !important;
+  display: flex !important;
+  align-items: center !important;
 }
