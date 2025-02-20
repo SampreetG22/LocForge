@@ -5,7 +5,15 @@ import html2canvas from "html2canvas";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 
 export const Output = (props) => {
-  const { line1, line2, fontFamily, styles, alignment } = props;
+  const {
+    line1,
+    line2,
+    fontFamily,
+    styles,
+    alignment,
+    faviconLetter,
+    isTransparent,
+  } = props;
 
   const getStyle = (line) => ({
     fontWeight: styles[line].bold ? "bold" : "normal",
@@ -20,7 +28,7 @@ export const Output = (props) => {
     const logoDiv = document.querySelector(".logoContainer");
     const faviconDiv = document.querySelector(".faviconContainer");
 
-    html2canvas(logoDiv).then((canvas) => {
+    html2canvas(logoDiv, { backgroundColor: null }).then((canvas) => {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
       link.download = "Logo.png";
@@ -29,7 +37,7 @@ export const Output = (props) => {
       }
     });
 
-    html2canvas(faviconDiv).then((canvas) => {
+    html2canvas(faviconDiv, { backgroundColor: null }).then((canvas) => {
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
       link.download = "Favicon.png";
@@ -48,17 +56,25 @@ export const Output = (props) => {
     <div className="outputMainContainer">
       <div
         className="logoContainer"
-        style={{ backgroundColor: styles.backgroundColor }}
+        style={{
+          backgroundColor: isTransparent
+            ? "transparent"
+            : styles.backgroundColor,
+        }}
       >
         <p style={{ fontFamily, ...getStyle("line1") }}>{line1}</p>
         <p style={{ fontFamily, ...getStyle("line2") }}>{line2}</p>
       </div>
       <div
         className="faviconContainer"
-        style={{ backgroundColor: styles.backgroundColor }}
+        style={{
+          backgroundColor: isTransparent
+            ? "transparent"
+            : styles.backgroundColor,
+        }}
       >
         <p style={{ fontFamily, ...getStyle("favicon") }}>
-          {firstLetter(line1)}
+          {faviconLetter.toUpperCase() || firstLetter(line1)}
         </p>
       </div>
       <div className="buttonsWrapper">

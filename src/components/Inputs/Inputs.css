@@ -49,9 +49,29 @@
   width: 80%;
   margin-block: 0.5vw !important;
 }
+.faviconDetailsWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.faviconSizeWrapper {
+  width: 30%;
+}
+.faviconLetter {
+  width: 30% !important;
+}
 .fontsDropdown {
   min-width: 25%;
   width: max-content;
+}
+.transparentBackground {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+}
+.checkbox {
+  margin-right: 4px !important;
+  padding: 0 !important;
 }
 .alignmentWrapper {
   display: flex;
@@ -73,8 +93,8 @@
   text-align: center;
 }
 .colorPicker {
-  width: 100% !important;
-  height: 100% !important;
+  width: 90% !important;
+  height: 80% !important;
   margin-bottom: 1.6vw;
 }
 .hexCode {

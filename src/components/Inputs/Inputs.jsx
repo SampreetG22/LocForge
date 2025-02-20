@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Inputs.css";
 import { Output } from "../Output/Output";
-import { IconButton, MenuItem, Select, TextField } from "@mui/material";
+import {
+  IconButton,
+  MenuItem,
+  Select,
+  TextField,
+  Checkbox,
+} from "@mui/material";
 import FormatBoldIcon from "@mui/icons-material/FormatBold";
 import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
@@ -18,12 +24,17 @@ export const Inputs = () => {
   const [styles, setStyles] = useState({
     line1: { bold: false, italic: false, fontSize: 50 },
     line2: { bold: false, italic: false, fontSize: 22 },
-    favicon: { fontSize: 50 },
+    favicon: { letter: "", fontSize: 50 },
     color: "#000",
     backgroundColor: "#fff",
   });
   const [selectedFont, setSelectedFont] = useState("Lucida Sans");
   const [alignment, setAlignment] = useState("left");
+  const [isTransparent, setIsTransparent] = useState(false);
+
+  useEffect(() => {
+    setIsTransparent(styles.backgroundColor === "transparent");
+  }, [styles.backgroundColor]);
 
   const handleTextChange = (line, value) => {
     setText((prev) => ({ ...prev, [line]: value }));
@@ -61,6 +72,19 @@ export const Inputs = () => {
     }));
   };
 
+  const handleFaviconLetterChange = (letter) => {
+    setStyles((prev) => ({
+      ...prev,
+      favicon: { ...prev.favicon, letter },
+    }));
+  };
+
+  const handleCheckboxChange = (event) => {
+    const isChecked = event.target.checked;
+    setIsTransparent(isChecked);
+    handleBackgroundColorChange(isChecked ? "transparent" : "#fff");
+  };
+
   const copyColor = (color) => {
     navigator.clipboard
       .writeText(color)
@@ -96,6 +120,7 @@ export const Inputs = () => {
               className="textFields"
               value={text.line1}
               onChange={(e) => handleTextChange("line1", e.target.value)}
+              size="small"
               InputProps={{
                 endAdornment: (
                   <IconButton onClick={() => clearText("line1")}>
@@ -140,6 +165,7 @@ export const Inputs = () => {
                 className="textFields"
                 value={text.line2}
                 onChange={(e) => handleTextChange("line2", e.target.value)}
+                size="small"
                 InputProps={{
                   endAdornment: (
                     <IconButton onClick={() => clearText("line2")}>
@@ -194,7 +220,7 @@ export const Inputs = () => {
           </Select>
         </div>
         <div className="alignmentWrapper">
-          <p className="linesText">Select Alignment</p>
+          <p className="linesText">Alignment</p>
           <IconButton
             className="iconButton"
             onClick={() => setAlignment("left")}
@@ -217,21 +243,42 @@ export const Inputs = () => {
             <FormatAlignRightIcon />
           </IconButton>
         </div>
-        <div className="faviconSizeWrapper">
-          <p className="linesText">Favicon Size</p>
-          <Select
-            value={styles.favicon.fontSize}
-            onChange={(e) => handleFontSizeChange("favicon", e.target.value)}
-            className="fontSizeDropdown"
-            size="small"
-          >
-            {fontSizes.map((size, index) => (
-              <MenuItem key={index} value={size}>
-                {size}
-              </MenuItem>
-            ))}
-          </Select>
+        <div className="faviconDetailsWrapper">
+          <div className="faviconSizeWrapper">
+            <p className="linesText">Favicon Letter</p>
+            <TextField
+              label="Letter"
+              size="small"
+              className="faviconLetter"
+              value={styles.favicon.letter}
+              onChange={(e) => handleFaviconLetterChange(e.target.value)}
+            />
+          </div>
+          <div className="faviconSizeWrapper">
+            <p className="linesText">Favicon Size</p>
+            <Select
+              value={styles.favicon.fontSize}
+              onChange={(e) => handleFontSizeChange("favicon", e.target.value)}
+              className="fontSizeDropdown"
+              size="small"
+            >
+              {fontSizes.map((size, index) => (
+                <MenuItem key={index} value={size}>
+                  {size}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
         </div>
+        <p className="transparentBackground">
+          <Checkbox
+            checked={isTransparent}
+            onChange={handleCheckboxChange}
+            color="primary"
+            className="checkbox"
+          />
+          Transparent Background
+        </p>
         <div className="colorPickerWrapper">
           <div className="backgroundColorWrapper">
             <h6>Background Color</h6>
@@ -246,6 +293,7 @@ export const Inputs = () => {
               variant="outlined"
               value={styles.backgroundColor}
               onChange={(e) => handleBackgroundColorChange(e.target.value)}
+              size="small"
               InputProps={{
                 endAdornment: (
                   <IconButton onClick={() => copyColor(styles.backgroundColor)}>
@@ -268,6 +316,7 @@ export const Inputs = () => {
               variant="outlined"
               value={styles.color}
               onChange={(e) => handleColorChange(e.target.value)}
+              size="small"
               InputProps={{
                 endAdornment: (
                   <IconButton onClick={() => copyColor(styles.color)}>
@@ -281,13 +330,15 @@ export const Inputs = () => {
       </div>
       <div className="outputContainer">
         <h1 className="logoTitle">RESULT</h1>
-        {text.line1 ? (
+        {text.line1 || styles.favicon.letter ? (
           <Output
             line1={text.line1}
             line2={text.line2}
             fontFamily={selectedFont}
             styles={styles}
             alignment={alignment}
+            faviconLetter={styles.favicon.letter} // Pass favicon letter to Output component
+            isTransparent={isTransparent} // Pass transparency state to Output component
           />
         ) : (
           <div className="noResultWrapper">
