@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Output.css";
 import { Button } from "@mui/material";
 import html2canvas from "html2canvas";
@@ -14,6 +14,8 @@ export const Output = (props) => {
     faviconLetter,
     isTransparent,
   } = props;
+
+  const [contrast, setContrast] = useState("");
 
   const getStyle = (line) => ({
     fontWeight: styles[line].bold ? "bold" : "normal",
@@ -52,6 +54,25 @@ export const Output = (props) => {
     return letter;
   };
 
+  const checkContrast = async () => {
+    const fColor = styles.color.slice(1);
+    const bgColor = styles.backgroundColor.slice(1);
+    const apiUrl = `https://webaim.org/resources/contrastchecker/?fcolor=${fColor}&bcolor=${bgColor}&api`;
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setContrast(data);
+    } catch (error) {
+      console.error(
+        "There has been a problem with your fetch operation:",
+        error
+      );
+    }
+  };
+
   return (
     <div className="outputMainContainer">
       <div
@@ -77,6 +98,11 @@ export const Output = (props) => {
           {faviconLetter.toUpperCase() || firstLetter(line1)}
         </p>
       </div>
+      {contrast["AA"] && (
+        <p>
+          {contrast["AA"].toUpperCase()} +- {contrast["ratio"]}
+        </p>
+      )}
       <div className="buttonsWrapper">
         <Button
           variant="contained"
@@ -101,6 +127,14 @@ export const Output = (props) => {
           className="downloadButtons"
         >
           Both
+        </Button>
+        <Button
+          variant="contained"
+          onClick={checkContrast}
+          endIcon={<CloudDownloadIcon />}
+          className="downloadButtons"
+        >
+          Check Contrast
         </Button>
       </div>
     </div>

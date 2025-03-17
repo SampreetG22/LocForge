@@ -245,7 +245,7 @@ export const Inputs = () => {
         </div>
         <div className="faviconDetailsWrapper">
           <div className="faviconSizeWrapper">
-            <p className="linesText">Favicon Letter</p>
+            <p className="linesText">Favicon</p>
             <TextField
               label="Letter"
               size="small"
@@ -255,7 +255,7 @@ export const Inputs = () => {
             />
           </div>
           <div className="faviconSizeWrapper">
-            <p className="linesText">Favicon Size</p>
+            <p className="linesText">Size</p>
             <Select
               value={styles.favicon.fontSize}
               onChange={(e) => handleFontSizeChange("favicon", e.target.value)}
@@ -337,8 +337,8 @@ export const Inputs = () => {
             fontFamily={selectedFont}
             styles={styles}
             alignment={alignment}
-            faviconLetter={styles.favicon.letter} // Pass favicon letter to Output component
-            isTransparent={isTransparent} // Pass transparency state to Output component
+            faviconLetter={styles.favicon.letter}
+            isTransparent={isTransparent}
           />
         ) : (
           <div className="noResultWrapper">
