@@ -98,11 +98,11 @@ export const Output = (props) => {
           {faviconLetter.toUpperCase() || firstLetter(line1)}
         </p>
       </div>
-      {contrast["AA"] && (
+      {/* {contrast["AA"] && (
         <p>
           {contrast["AA"].toUpperCase()} - {contrast["ratio"]}
         </p>
-      )}
+      )} */}
       <div className="buttonsWrapper">
         <Button
           variant="contained"
