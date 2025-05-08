@@ -329,7 +329,7 @@ export const Inputs = () => {
         </div>
       </div>
       <div className="outputContainer">
-        <h1 className="logoTitle">RESULT</h1>
+        <h1 className="logoTitle">PREVIEW</h1>
         {text.line1 || styles.favicon.letter ? (
           <Output
             line1={text.line1}

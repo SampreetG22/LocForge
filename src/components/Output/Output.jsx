@@ -32,8 +32,8 @@ export const Output = (props) => {
 
     html2canvas(logoDiv, { backgroundColor: null }).then((canvas) => {
       const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = "Logo.png";
+      link.href = canvas.toDataURL("image/jpg");
+      link.download = "Logo.jpg";
       if (type === "logo" || type === "both") {
         link.click();
       }
@@ -41,8 +41,8 @@ export const Output = (props) => {
 
     html2canvas(faviconDiv, { backgroundColor: null }).then((canvas) => {
       const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = "Favicon.png";
+      link.href = canvas.toDataURL("image/jpg");
+      link.download = "Favicon.jpg";
       if (type === "favicon" || type === "both") {
         link.click();
       }
@@ -100,7 +100,7 @@ export const Output = (props) => {
       </div>
       {contrast["AA"] && (
         <p>
-          {contrast["AA"].toUpperCase()} +- {contrast["ratio"]}
+          {contrast["AA"].toUpperCase()} - {contrast["ratio"]}
         </p>
       )}
       <div className="buttonsWrapper">

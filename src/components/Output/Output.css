@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 .logoContainer {
-  width: 320px;
+  width: max-content;
   padding: 1vw;
   margin-block: 5%;
   margin-top: 10%;
